@@ -1,6 +1,6 @@
 # Repository specification: aether-ai-admin
 
-**Status:** Documentation baseline copied from the Aether AI master specification. Implementation status must be verified separately.
+**Status:** Repository exists; documentation-only on the inspected `main` branch. No application implementation is present in the audited tree.
 
 ## Mission
 
@@ -8,7 +8,7 @@ Privileged operator UI for model/provider configuration, users, policies, quotas
 
 ## Dependencies and connections
 
-API, auth, UI components.
+aether-ai-api, aether-ai-auth, and aether-ai-ui-components.
 
 ## Owned capabilities
 
