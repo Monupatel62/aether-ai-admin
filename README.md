@@ -1,23 +1,23 @@
-# Aether AI Admin
+# aether-ai-admin
 
-**Status:** Documentation foundation only. No application implementation or deployment is claimed.
+**Status:** Initial structured audit-event service implemented on a feature branch. No production audit store or admin console is configured.
 
-Privileged operator interface for model/provider configuration, user administration, policy review, quota visibility, and system health. The UI is not an authorization authority: every privileged operation must be authorized by the owning API/domain boundary.
+## Implemented
+
+- [Audit service](src/index.js): required actor/tenant/action/resource/outcome metadata, severity validation, strict detail-key allowlist, bounded primitive detail values, and safe store-error handling.
+- [Unit tests](test/admin.test.js): schema validation, secret/prompt field filtering, nested value rejection, and persistence failures.
+- Dependency-free Node.js package with Node 20/22 CI.
+
+## Limitations
+
+The store adapter must provide durable, append-only semantics and access controls. This package does not provide audit search/export UI, tamper-evident storage, retention/legal-hold policy, privileged-action workflows, or production alerting. Audit events intentionally avoid arbitrary request bodies and user content.
 
 ## Documentation
+
+- [Repository specification](docs/REPOSITORY_SPECIFICATION.md)
 - [Project specification](docs/PROJECT_SPEC.md)
 - [Architecture](docs/ARCHITECTURE.md)
-- [Technical design](docs/TECHNICAL_DESIGN.md)
 - [Dependencies and contracts](docs/DEPENDENCIES_AND_CONTRACTS.md)
 - [Implementation plan](docs/IMPLEMENTATION_PLAN.md)
 - [Security review](docs/SECURITY_REVIEW.md)
-- [Research and licenses](docs/RESEARCH_AND_LICENSES.md)
-- [Engineering standard](docs/ENGINEERING_STANDARD.md)
-- [Work log](docs/WORKLOG.md)
-
-## Guardrails
-- Deny access by default; enforce authorization server-side on every operation.
-- Require explicit confirmation for destructive or high-impact changes.
-- Never expose provider secrets in the browser, logs, URLs, or audit displays.
-- Do not access another repository's private database tables.
-- This repository does not imply a separately deployed service.
+- [Master catalog](https://github.com/Monupatel62/aether-ai-platform/blob/main/docs/REPOSITORY_CATALOG.md)
