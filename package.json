@@ -1,0 +1,10 @@
+{
+  "name": "@aether-ai/admin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Structured security audit event primitives with metadata allowlisting.",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "exports": { ".": "./src/index.js" },
+  "scripts": { "test": "node --test", "check": "node --check src/index.js && node --check test/admin.test.js" }
+}
