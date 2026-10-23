@@ -35,3 +35,11 @@ test("does not serialize arbitrary details or nested values", async () => {
   assert.deepEqual(events[0].details, { requestId: "req-1" });
   assert.equal("prompt" in events[0], false);
 });
+
+
+test("cannot expand audit detail allowlist to sensitive fields", async () => {
+  assert.throws(() => createAuditService({ store: { append: async () => {} }, allowedDetailKeys: new Set(["prompt"]) }), /privacy allowlist/);
+  const { service, events } = fixture();
+  await service.record({ ...base, details: { reasonCode: "contains private words", requestId: "email@example.com", policyVersion: -1, resourceVersion: 2 } });
+  assert.deepEqual(events[0].details, { resourceVersion: 2 });
+});
